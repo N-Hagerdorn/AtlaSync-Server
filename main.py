@@ -23,6 +23,5 @@ def room():
 def floor():
     return None
 
-
-app.run(host='192.168.0.5', port=5000, debug=True, threaded=False)
 db.connect('','')
+app.run(host='192.168.0.5', port=5000, debug=True, threaded=False)
