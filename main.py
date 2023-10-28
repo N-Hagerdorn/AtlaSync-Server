@@ -1,9 +1,11 @@
 from flask import Flask, request
 from database import Database as db
 from qrCodeGenerator import QRCodeGenerator as qrcg
+import netifaces as ni
 
 app = Flask(__name__)
 
+ip_address = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
 
 @app.route('/')
 def hello():
@@ -27,4 +29,4 @@ def floor():
     return None
 
 db.connect('atlas','atlas')
-app.run(host='192.168.0.5', port=5000, debug=True, threaded=False)
+app.run(host=ip_address, port=5000, debug=True, threaded=False)
