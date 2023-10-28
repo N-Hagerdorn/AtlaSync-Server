@@ -18,6 +18,7 @@ def room():
     room_id = request.args.get('room')
     print(f'User {request.remote_addr} requests Room {room_id}')
     result = db.getLocation(room_id)
+    print(str(result))
     # Get floor from room.floor_id
     # Get floor map
     # Get building
