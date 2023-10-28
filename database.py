@@ -4,6 +4,8 @@ import sys
 
 class Database:
 
+    cur = None
+
     @classmethod
     def connect(cls, username, password):
 
@@ -39,9 +41,12 @@ class Database:
 
     @classmethod
     def getLocation(cls, room_id):
-        statement = "SELECT map_location_x, map_location_y, floor_id FROM room WHERE id = room id"
-        data = (room_id,)
+        if cls.cur is None:
+            return None
+        statement = 'SELECT * FROM Room WHERE id = ?'
+        data = room_id
         cls.cur.execute(statement, data)
-        for (map_location_x, map_location_y) in cls.cur:
-            print(f"Successfully retrieved {map_location_x}, {map_location_y}")
+        row = cls.cur.fetchone()
+        while row is not None:
+            print(f'Successfully retrieved location x={row[3]}, {row[4]}')
         return 0
