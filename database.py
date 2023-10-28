@@ -46,7 +46,10 @@ class Database:
         query = 'SELECT * FROM Organization WHERE id = ?'
         data = (organization_id,)
         cls.cur.execute(query, data)
-        organization_id, organization_name = cls.cur.fetchone()
+        record = cls.cur.fetchone()
+        if record is None:
+            return None
+        organization_id, organization_name = record
         return Organization(organization_id, organization_name)
 
     @classmethod
@@ -54,7 +57,10 @@ class Database:
         query = 'SELECT * FROM Building WHERE id = ?'
         data = (building_id,)
         cls.cur.execute(query, data)
-        building_id, building_name, org_id = cls.cur.fetchone()
+        record = cls.cur.fetchone()
+        if record is None:
+            return None
+        building_id, building_name, org_id = record
         return Building(building_id, building_name, org_id)
 
     @classmethod
@@ -62,7 +68,10 @@ class Database:
         query = 'SELECT * FROM Floor WHERE id = ?'
         data = (floor_id,)
         cls.cur.execute(query, data)
-        floor_id, story, building_id = cls.cur.fetchone()
+        record = cls.cur.fetchone()
+        if record is None:
+            return None
+        floor_id, story, building_id = record
         return Floor(floor_id, story, building_id)
 
     @classmethod
@@ -72,8 +81,10 @@ class Database:
         data = (room_id,)
         print(data)
         cls.cur.execute(query, data)
-        print(str(cls.cur.fetchone()))
-        room_id, room_name, floor_id, x_loc, y_loc = cls.cur.fetchone()
+        record = cls.cur.fetchone()
+        if record is None:
+            return None
+        room_id, room_name, floor_id, x_loc, y_loc = record
         return Room(room_id, room_name, floor_id, (x_loc, y_loc))
 
     @classmethod
