@@ -22,7 +22,7 @@ def room():
     # Get floor map
     # Get building
     # Get organization
-    return result
+    return str(result)
 
 
 @app.route('/floor')
