@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from database import Database as db
 
 app = Flask(__name__)
@@ -9,9 +9,11 @@ def hello():
     return 'Hello, World!'
 
 
-@app.route('/room')
+@app.route('/room', methods=['GET'])
 def room():
     # Get room
+    room_id = request.form['room']
+    print(room_id)
     # Get floor from room.floor_id
     # Get floor map
     # Get building

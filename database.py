@@ -36,3 +36,7 @@ class Database:
     @classmethod
     def addOrganization(cls):
         return None
+
+    @classmethod
+    def getLocation(cls, room_id):
+        return 0
