@@ -7,9 +7,11 @@ app = Flask(__name__)
 
 ip_address = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
 
+
 @app.route('/')
 def hello():
     return 'Hello, World!'
+
 
 @app.route('/room', methods=['GET'])
 def room():
@@ -24,9 +26,11 @@ def room():
     # Get organization
     return str(result)
 
+
 @app.route('/floor')
 def floor():
     return None
+
 
 db.connect('atlas','atlas')
 app.run(host=ip_address, port=5000, debug=True, threaded=False)
