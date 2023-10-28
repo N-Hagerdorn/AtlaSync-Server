@@ -1,4 +1,5 @@
 from flask import Flask
+from database import Database as db
 
 app = Flask(__name__)
 
@@ -23,4 +24,5 @@ def floor():
     return None
 
 
-app.run(host='192.168.0.5', port=5001, debug=True, threaded=False)
+app.run(host='192.168.0.5', port=5000, debug=True, threaded=False)
+db.connect('','')
