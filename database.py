@@ -6,8 +6,6 @@ class Database:
 
     @classmethod
     def connect(cls, username, password):
-        username = None
-        password = None
 
         try:
             conn = mariadb.connect(
