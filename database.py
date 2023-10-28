@@ -100,4 +100,4 @@ class Database:
 
         organization = cls.getOrganizationByID(building.owner_id)
 
-        return f'Room {room.name} is located on floor {floor.namet} of the {building.name} at {organization.name}'
+        return f'Room {room.name} is located on floor {floor.name} of the {building.name} at {organization.name}'
