@@ -39,4 +39,9 @@ class Database:
 
     @classmethod
     def getLocation(cls, room_id):
+        statement = "SELECT map_location_x, map_location_y, floor_id FROM room WHERE id = room id"
+        data = (room_id,)
+        cls.cur.execute(statement, data)
+        for (map_location_x, map_location_y) in cls.cur:
+            print(f"Successfully retrieved {map_location_x}, {map_location_y}")
         return 0
