@@ -14,7 +14,7 @@ def hello():
 @app.route('/room', methods=['GET'])
 def room():
     # Get room
-    room_id = request.args.get('room')
+    room_id = request.args.get('id')
     print(f'User {request.remote_addr} requests Room {room_id}')
     result = db.getLocation(room_id)
     print(str(result))

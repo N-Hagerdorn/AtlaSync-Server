@@ -1,12 +1,16 @@
 import mariadb
 import sys
+from db_model import *
+
 
 class Database:
 
     cur = None
 
+
     @classmethod
     def connect(cls, username, password):
+
         try:
             conn = mariadb.connect(
                 user=username,
@@ -38,18 +42,48 @@ class Database:
         return None
 
     @classmethod
+    def getOrganizationByID(cls, organization_id):
+        query = 'SELECT * FROM Organization WHERE id = ?'
+        data = (organization_id,)
+        cls.cur.execute(query, data)
+        organization_id, organization_name = cls.cur.fetchone()
+        return Organization(organization_id, organization_name)
+
+    @classmethod
+    def getBuildingByID(cls, building_id):
+        query = 'SELECT * FROM Building WHERE id = ?'
+        data = (building_id,)
+        cls.cur.execute(query, data)
+        building_id, building_name, org_id = cls.cur.fetchone()
+        return Building(building_id, building_name, org_id)
+
+    @classmethod
+    def getFloorByID(cls, floor_id):
+        query = 'SELECT * FROM Floor WHERE id = ?'
+        data = (floor_id,)
+        cls.cur.execute(query, data)
+        floor_id, story, building_id = cls.cur.fetchone()
+        return Floor(floor_id, story, building_id)
+
+    @classmethod
+    def getRoomByID(cls, room_id):
+        query = 'SELECT * FROM Room WHERE id = ?'
+        data = (room_id,)
+        cls.cur.execute(query, data)
+        room_id, room_name, floor_id, x_loc, y_loc = cls.cur.fetchone()
+        return Room(room_id, room_name, floor_id, (x_loc, y_loc))
+
+    @classmethod
     def getLocation(cls, room_id):
         if cls.cur is None:
             return None
 
-        statement = 'SELECT * FROM Room WHERE id = ?'
-        data = (room_id,)
-        cls.cur.execute(statement, data)
-        row = cls.cur.fetchone()
-        records = []
-        while row is not None:
-            room_id, name, floor_id, x_loc, y_loc = row
-            records.append(f'Successfully retrieved location x={x_loc}, y={y_loc} for room {name}')
-            row = cls.cur.fetchone()
+        room = cls.getRoomByID(room_id)
 
-        return records
+        floor = cls.getFloorByID(room.owner_id)
+
+        building = cls.getBuildingByID(floor.owner_id)
+
+        organization = cls.getOrganizationByID(building.owner_id)
+
+        return f'Room {room.name} is located on floor {floor.namet} of the {building.name} at {organization.name}'
