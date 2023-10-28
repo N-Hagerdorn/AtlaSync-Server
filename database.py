@@ -47,7 +47,7 @@ class Database:
         if cls.cur is None:
             return None
         statement = 'SELECT * FROM Room WHERE id = ?'
-        data = room_id
+        data = (room_id,)
         cls.cur.execute(statement, data)
         row = cls.cur.fetchone()
         records = []
