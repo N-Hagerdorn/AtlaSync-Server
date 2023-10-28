@@ -1,5 +1,3 @@
-
-
 class Building():
 
     def __init__(self, name, building_id, organization):

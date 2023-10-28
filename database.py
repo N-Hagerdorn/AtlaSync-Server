@@ -1,17 +1,12 @@
 import mariadb
 import sys
 
-
-
-
 class Database:
 
     cur = None
 
-
     @classmethod
     def connect(cls, username, password):
-
         try:
             conn = mariadb.connect(
                 user=username,
@@ -56,4 +51,5 @@ class Database:
             room_id, name, floor_id, x_loc, y_loc = row
             records.append(f'Successfully retrieved location x={x_loc}, y={y_loc} for room {name}')
             row = cls.cur.fetchone()
+
         return records

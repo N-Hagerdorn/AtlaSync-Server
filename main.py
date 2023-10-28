@@ -11,7 +11,6 @@ ip_address = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
 def hello():
     return 'Hello, World!'
 
-
 @app.route('/room', methods=['GET'])
 def room():
     # Get room
@@ -24,7 +23,6 @@ def room():
     # Get building
     # Get organization
     return str(result)
-
 
 @app.route('/floor')
 def floor():
