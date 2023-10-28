@@ -15,6 +15,8 @@ def room():
     # Get organization
     return None
 
+app.run()
+
 @app.route('/floor')
 def floor():
     return None
