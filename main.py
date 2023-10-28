@@ -18,7 +18,7 @@ def room():
     # Get floor map
     # Get building
     # Get organization
-    return None
+    return room_id
 
 
 @app.route('/floor')
