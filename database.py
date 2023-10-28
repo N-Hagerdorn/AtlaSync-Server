@@ -68,8 +68,11 @@ class Database:
     @classmethod
     def getRoomByID(cls, room_id):
         query = 'SELECT * FROM Room WHERE id = ?'
+        print(query)
         data = (room_id,)
+        print(data)
         cls.cur.execute(query, data)
+        print(str(cls.cur.fetchone()))
         room_id, room_name, floor_id, x_loc, y_loc = cls.cur.fetchone()
         return Room(room_id, room_name, floor_id, (x_loc, y_loc))
 
