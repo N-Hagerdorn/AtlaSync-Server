@@ -51,5 +51,5 @@ class Database:
         cls.cur.execute(statement, data)
         row = cls.cur.fetchone()
         while row is not None:
-            print(f'Successfully retrieved location x={row[3]}, {row[4]}')
+            print(f'Successfully retrieved location x={row[3]}, {row[4]} for room {row[1]}')
         return 0
