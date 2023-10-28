@@ -60,5 +60,6 @@ class Database:
         while row is not None:
             print('step 7')
             records.append(f'Successfully retrieved location x={row[3]}, {row[4]} for room {row[1]}')
+            row = cls.cur.fetchone()
         print('step 8')
         return records
