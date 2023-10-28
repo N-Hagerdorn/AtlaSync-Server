@@ -50,6 +50,7 @@ class Database:
         data = room_id
         cls.cur.execute(statement, data)
         row = cls.cur.fetchone()
+        records = []
         while row is not None:
-            print(f'Successfully retrieved location x={row[3]}, {row[4]} for room {row[1]}')
-        return 0
+            records.append(f'Successfully retrieved location x={row[3]}, {row[4]} for room {row[1]}')
+        return records

@@ -17,11 +17,12 @@ def room():
     # Get room
     room_id = request.args.get('room')
     print(f'User {request.remote_addr} requests Room {room_id}')
+    result = db.getLocation(room_id)
     # Get floor from room.floor_id
     # Get floor map
     # Get building
     # Get organization
-    return room_id
+    return result
 
 
 @app.route('/floor')
