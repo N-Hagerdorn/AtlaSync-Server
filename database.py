@@ -13,7 +13,6 @@ class Database:
     def connect(cls, username, password):
 
         try:
-            ip_address = Database.get_ip_address('wlan0')
             conn = mariadb.connect(
                 user=username,
                 password=password,
