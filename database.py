@@ -46,20 +46,14 @@ class Database:
     def getLocation(cls, room_id):
         if cls.cur is None:
             return None
-        print('step 1')
+
         statement = 'SELECT * FROM Room WHERE id = ?'
-        print('step 2')
         data = (room_id,)
-        print('step 3')
         cls.cur.execute(statement, data)
-        print('step 4')
         row = cls.cur.fetchone()
-        print('step 5')
         records = []
-        print('step 6')
         while row is not None:
-            print('step 7')
-            records.append(f'Successfully retrieved location x={row[3]}, {row[4]} for room {row[1]}')
+            room_id, name, floor_id, x_loc, y_loc = row
+            records.append(f'Successfully retrieved location x={x_loc}, y={y_loc} for room {name}')
             row = cls.cur.fetchone()
-        print('step 8')
         return records
