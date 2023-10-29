@@ -1,19 +1,17 @@
-Room,Building,Floor,Raw measurement,Raw X,Raw Y,Relative X,Relative Y
-Union Market,Ohio Union,1,297 × 355,297 , 355,2080,2298
-Woody's Tavern,Ohio Union,1,475 × 654,475 , 654,3326,4233
-Ben and Arlene Roth Lounge,Ohio Union,1,748 × 439,748 , 439,5238,2841
-US Bank Conference Theatre,Ohio Union,1,1066 × 425,1066 , 425,7465,2751
-Sloopy's Diner,Ohio Union,1,1098 × 114,1098 , 114,7689,738
-Performance Hall,Ohio Union,1,1154 × 657,1154 , 657,8081,4252
-US Bank,Ohio Union,1,227 × 1087,227 , 1087,1590,7036
-Potter Plaza,Ohio Union,1,1200 × 951,1200 , 951,8403,6155
-Multicultural Center,Ohio Union,1,1201 × 1155,1201 , 1155,8410,7476
-Alonso Family Room,Ohio Union,1,1319 × 1298,1319 , 1298,9237,8401
-OSU Public Safety,Ohio Union,1,112 × 1244,112 , 1244,784,8052
-Uniprint,Ohio Union,1,313 × 1295,313 , 1295,2192,8382
-The OSU Bookstore,Ohio Union,1,517 × 1287,517 , 1287,3620,8330
-OSU Alumni Association,Ohio Union,1,947 × 852,947 , 852,6632,5515
-Information Center,Ohio Union,1,912 × 980,912 , 980,6387,6343
-West Plaza,Ohio Union,1,713 × 230,713 , 230,4993,1489
-,,,,,,,
-,,,,,,,
+Room,Building,Floor,,Raw X,Raw Y,Relative X,Relative Y
+Union Market,Ohio Union,1,,297,355,2080,2298
+Woody's Tavern,Ohio Union,1,,475,654,3326,4233
+Ben and Arlene Roth Lounge,Ohio Union,1,,748,439,5238,2841
+US Bank Conference Theatre,Ohio Union,1,,1066,425,7465,2751
+Sloopy's Diner,Ohio Union,1,,1098,114,7689,738
+Performance Hall,Ohio Union,1,,1154,657,8081,4252
+US Bank,Ohio Union,1,,227,1087,1590,7036
+Potter Plaza,Ohio Union,1,,1200,951,8403,6155
+Multicultural Center,Ohio Union,1,,1201,1155,8410,7476
+Alonso Family Room,Ohio Union,1,,1319,1298,9237,8401
+OSU Public Safety,Ohio Union,1,,112,1244,784,8052
+Uniprint,Ohio Union,1,,313,1295,2192,8382
+The OSU Bookstore,Ohio Union,1,,517,1287,3620,8330
+OSU Alumni Association,Ohio Union,1,,947,852,6632,5515
+Information Center,Ohio Union,1,,912,980,6387,6343
+West Plaza,Ohio Union,1,,713,230,4993,1489
