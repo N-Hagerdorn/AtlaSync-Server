@@ -26,8 +26,31 @@ class Database:
         cls.cur = conn.cursor()
 
     @classmethod
-    def addRoom(cls):
-        return None
+    def addRoom(cls, room):
+
+        '''
+        # First check if there is already a room with the given name
+        query = 'SELECT name FROM Room WHERE name = ?'
+        data = (room.name,)
+        cls.cur.execute(query, data)
+        record = cls.cur.fetchone()
+        if record is not None:
+            return False
+        '''
+        query = 'INSERT INTO Room (name, floor_id, x_loc, y_loc) VALUES (?, ?, ?, ?)'
+        data = (room.name, room.owner_id, room.location[0], room.location[1])
+        cls.cur.execute(query, data)
+
+        ''' May not choose to implement this, idk
+        query = 'SELECT id FROM Floor WHERE id = ?'
+        data = (room.owner_id,)
+        cls.cur.execute(query, data)
+        record = cls.cur.fetchone()
+        if record is None:
+            addFloor()
+        '''
+
+        return True
 
     @classmethod
     def addFloor(cls):
@@ -64,6 +87,17 @@ class Database:
         return Building(building_id, building_name, org_id)
 
     @classmethod
+    def getBuilding(cls, column_name, column_value):
+        query = 'SELECT * FROM Building WHERE ? = ?'
+        data = (column_name, column_value)
+        cls.cur.execute(query, data)
+        record = cls.cur.fetchone()
+        if record is None:
+            return None
+        building_id, building_name, org_id = record
+        return Building(building_id, building_name, org_id)
+
+    @classmethod
     def getFloorByID(cls, floor_id):
         query = 'SELECT * FROM Floor WHERE id = ?'
         data = (floor_id,)
@@ -75,11 +109,20 @@ class Database:
         return Floor(floor_id, story, building_id)
 
     @classmethod
+    def getFloor(cls, building_id, story):
+        query = 'SELECT * FROM Floor WHERE building_id = ? AND story = ?'
+        data = (building_id, story)
+        cls.cur.execute(query, data)
+        record = cls.cur.fetchone()
+        if record is None:
+            return None
+        floor_id, story, building_id = record
+        return Floor(floor_id, story, building_id)
+
+    @classmethod
     def getRoomByID(cls, room_id):
         query = 'SELECT * FROM Room WHERE id = ?'
-        print(query)
         data = (room_id,)
-        print(data)
         cls.cur.execute(query, data)
         record = cls.cur.fetchone()
         if record is None:
