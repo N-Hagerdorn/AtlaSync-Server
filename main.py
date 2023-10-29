@@ -33,7 +33,7 @@ def load():
             if name == 'Room' or name == '':
                 continue
             print(f'Trying to find {building_name} in table Building...')
-            building = db.getBuilding('name', f'"{building_name}"')
+            building = db.getBuildingByName(building_name)
             print(f'Found {building.name}')
             floor = db.getFloor(building.uid, story)
             room = Room(-1, name, floor.uid, x_loc, y_loc)

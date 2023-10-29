@@ -87,9 +87,9 @@ class Database:
         return Building(building_id, building_name, org_id)
 
     @classmethod
-    def getBuilding(cls, column_name, column_value):
-        query = 'SELECT * FROM Building WHERE ? = ?'
-        data = (column_name, column_value)
+    def getBuildingByName(cls, name):
+        query = 'SELECT * FROM Building WHERE name = ?'
+        data = (name,)
         cls.cur.execute(query, data)
         record = cls.cur.fetchone()
         if record is None:
