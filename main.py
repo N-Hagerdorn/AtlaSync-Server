@@ -4,6 +4,7 @@ from db_model import *
 from qrCodeGenerator import QRCodeGenerator as qrcg
 import netifaces as ni
 import csv
+from flask import send_file
 
 app = Flask(__name__)
 ip_address = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
@@ -82,8 +83,12 @@ def room():
     # Get floor map
     # Get building
     # Get organization
-    return str(result)
 
+    room = db.getRoomByID(room_id)
+    floor = db.getFloorByID(room.owner_id)
+    building = db.getBuildingByID(floor.owner_id)
+    filename = f'floormaps/{building.uid}-{floor.name}.png'
+    return send_file(filename, mimetype='image/png')
 
 @app.route('/floor')
 def floor():
