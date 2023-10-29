@@ -88,7 +88,7 @@ class Database:
 
     @classmethod
     def getBuilding(cls, column_name, column_value):
-        query = 'SELECT * FROM Building WHERE ? = ?'
+        query = 'SELECT * FROM Building WHERE ? = \'?\''
         data = (column_name, column_value)
         cls.cur.execute(query, data)
         record = cls.cur.fetchone()
