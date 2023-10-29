@@ -75,7 +75,7 @@ def hello():
 
 
 @app.route('/floor_map', methods=['GET'])
-def room():
+def floor_map():
     # Get room
     room_id = request.args.get('id')
     print(f'User {request.remote_addr} requests Room {room_id}')
@@ -94,7 +94,7 @@ def room():
 
 
 @app.route('/room_info', methods=['GET'])
-def room():
+def room_info():
     # Get room
     room_id = request.args.get('id')
     print(f'User {request.remote_addr} requests Room {room_id}')
