@@ -36,8 +36,10 @@ def load_rooms():
 @app.route('/make_qr_codes')
 def make_qr_codes():
     rooms = db.getAllRooms()
-    print(rooms)
-    return rooms
+    for room_ in rooms:
+        qrcg.makeRoomQRCode(room_.uid)
+
+    return 'QR codes created...'
 
 @app.route('/load_buildings')
 def load_buildings():
