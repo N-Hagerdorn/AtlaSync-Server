@@ -74,7 +74,7 @@ def hello():
     return 'Hello, World!'
 
 
-@app.route('/room/img', methods=['GET'])
+@app.route('/floor_map', methods=['GET'])
 def room():
     # Get room
     room_id = request.args.get('id')
@@ -93,7 +93,7 @@ def room():
     return converted_string
 
 
-@app.route('/room/info', methods=['GET'])
+@app.route('/room_info', methods=['GET'])
 def room():
     # Get room
     room_id = request.args.get('id')
