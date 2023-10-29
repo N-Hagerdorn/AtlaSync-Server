@@ -35,7 +35,7 @@ def load_rooms():
 
 @app.route('/make_qr_codes')
 def make_qr_codes():
-    rooms = db.getRooms('id', '*')
+    rooms = db.getAllRooms()
     print(rooms)
     return rooms
 
