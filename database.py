@@ -42,7 +42,7 @@ class Database:
         if record is not None:
             return False
         '''
-        query = 'INSERT INTO Room (name, floor_id, x_loc, y_loc) VALUES (?, ?, ?, ?)'
+        query = 'INSERT INTO Room (name, floor_id, x_loc, y_loc) VALUES (?, ?, ?, ?);'
         data = (room.name, room.owner_id, room.location[0], room.location[1])
         cls.cur.execute(query, data)
 
@@ -71,7 +71,7 @@ class Database:
 
     @classmethod
     def getOrganizationByID(cls, organization_id):
-        query = 'SELECT * FROM Organization WHERE id = ?'
+        query = 'SELECT * FROM Organization WHERE id = ?;'
         data = (organization_id,)
         cls.cur.execute(query, data)
         record = cls.cur.fetchone()
@@ -82,7 +82,7 @@ class Database:
 
     @classmethod
     def getBuildingByID(cls, building_id):
-        query = 'SELECT * FROM Building WHERE id = ?'
+        query = 'SELECT * FROM Building WHERE id = ?;'
         data = (building_id,)
         cls.cur.execute(query, data)
         record = cls.cur.fetchone()
@@ -93,7 +93,7 @@ class Database:
 
     @classmethod
     def getBuildingByName(cls, name):
-        query = 'SELECT * FROM Building WHERE name = ?'
+        query = 'SELECT * FROM Building WHERE name = ?;'
         data = (name,)
         cls.cur.execute(query, data)
         record = cls.cur.fetchone()
@@ -104,7 +104,7 @@ class Database:
 
     @classmethod
     def getFloorByID(cls, floor_id):
-        query = 'SELECT * FROM Floor WHERE id = ?'
+        query = 'SELECT * FROM Floor WHERE id = ?;'
         data = (floor_id,)
         cls.cur.execute(query, data)
         record = cls.cur.fetchone()
@@ -115,7 +115,7 @@ class Database:
 
     @classmethod
     def getFloor(cls, building_id, story):
-        query = 'SELECT * FROM Floor WHERE building_id = ? AND story = ?'
+        query = 'SELECT * FROM Floor WHERE building_id = ? AND story = ?;'
         data = (building_id, story)
         cls.cur.execute(query, data)
         record = cls.cur.fetchone()
@@ -126,7 +126,7 @@ class Database:
 
     @classmethod
     def getRoomByID(cls, room_id):
-        query = 'SELECT * FROM Room WHERE id = ?'
+        query = 'SELECT * FROM Room WHERE id = ?;'
         data = (room_id,)
         cls.cur.execute(query, data)
         record = cls.cur.fetchone()
@@ -136,10 +136,9 @@ class Database:
         return Room(room_id, room_name, floor_id, (x_loc, y_loc))
 
     @classmethod
-    def getRooms(cls, column_name, value):
-        query = 'SELECT * FROM Room WHERE ? = ?'
-        data = (column_name, value)
-        cls.cur.execute(query, data)
+    def getAllRooms(cls):
+        query = 'SELECT * FROM Room;'
+        cls.cur.execute(query)
         record = cls.cur.fetchone()
         rooms = []
 
