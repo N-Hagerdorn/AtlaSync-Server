@@ -83,7 +83,9 @@ def room():
     # Get organization
 
     room = db.getRoomByID(room_id)
-    filename = db.getFloorByID(room.owner_id)
+    floor = db.getFloorByID(room.owner_id)
+    building = db.getBuildingByID(floor.owner_id)
+    filename = f'floormaps/{building.id}-{floor.name}'
     return send_file(filename, mimetype='image/png')
 
 @app.route('/floor')
