@@ -1,7 +1,7 @@
 from flask import Flask, request
 from database import Database as db
 from db_model import *
-from qr_codes.qrCodeGenerator import QRCodeGenerator as qrcg
+from qrCodeGenerator import QRCodeGenerator as qrcg
 import netifaces as ni
 import csv
 
