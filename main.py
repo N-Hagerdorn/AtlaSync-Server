@@ -19,10 +19,33 @@ with open('Room_data.csv', mode='r') as file:
 ip_address = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
 
 # Import XLSX data
-@app.route('/load')
-def load():
+@app.route('/load_rooms')
+def load_rooms():
 
     with open('Room_data.csv', mode='r') as file:
+        # reading the CSV file
+        csvFile = csv.reader(file)
+
+        # displaying the contents of the CSV file
+
+        for record in csvFile:
+            name, building_name, story, _, _, _, x_loc, y_loc = record
+            if name == 'Room' or name == '':
+                continue
+            print(f'Trying to find {building_name} in table Building...')
+            building = db.getBuildingByName(building_name)
+            print(f'Found {building.name}')
+            floor = db.getFloor(building.uid, story)
+            room = Room(-1, name, floor.uid, (x_loc, y_loc))
+            db.addRoom(room)
+
+    db.commit()
+    return 'Load successful...'
+
+@app.route('/load_buildings')
+def load_buildings():
+
+    with open('Building_data.csv', mode='r') as file:
         # reading the CSV file
         csvFile = csv.reader(file)
 
