@@ -36,7 +36,7 @@ def load():
             building = db.getBuildingByName(building_name)
             print(f'Found {building.name}')
             floor = db.getFloor(building.uid, story)
-            room = Room(-1, name, floor.uid, x_loc, y_loc)
+            room = Room(-1, name, floor.uid, (x_loc, y_loc))
             db.addRoom(room)
 
 
