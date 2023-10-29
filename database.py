@@ -155,4 +155,4 @@ class Database:
 
         organization = cls.getOrganizationByID(building.owner_id)
 
-        return f'(location:"{room.location}") (room:"{room.name}") (floor:"{floor.name}") (building:"{building.name}")'
+        return f'(location:"{room.location}");(room:"{room.name}");(floor:"{floor.name}");(building:"{building.name}")'
