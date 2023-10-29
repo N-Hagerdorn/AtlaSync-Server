@@ -34,16 +34,6 @@ class Database:
 
     @classmethod
     def addRoom(cls, room):
-
-        '''
-        # First check if there is already a room with the given name
-        query = 'SELECT name FROM Room WHERE name = ?'
-        data = (room.name,)
-        cls.cur.execute(query, data)
-        record = cls.cur.fetchone()
-        if record is not None:
-            return False
-        '''
         query = 'INSERT INTO Room (name, floor_id, x_loc, y_loc) VALUES (?, ?, ?, ?);'
         data = (room.name, room.owner_id, room.location[0], room.location[1])
         cls.cur.execute(query, data)
@@ -59,7 +49,6 @@ class Database:
 
         return True
 
-
     @classmethod
     def addFloor(cls):
         return None
@@ -69,11 +58,9 @@ class Database:
     def addBuilding(cls):
         return None
 
-
     @classmethod
     def addOrganization(cls):
         return None
-
 
     @classmethod
     def getOrganizationByID(cls, organization_id):
@@ -86,7 +73,6 @@ class Database:
         organization_id, organization_name = record
         return Organization(organization_id, organization_name)
 
-
     @classmethod
     def getBuildingByID(cls, building_id):
         query = 'SELECT * FROM Building WHERE id = ?;'
@@ -97,7 +83,6 @@ class Database:
             return None
         building_id, building_name, org_id = record
         return Building(building_id, building_name, org_id)
-
 
     @classmethod
     def getBuildingByName(cls, name):
@@ -110,7 +95,6 @@ class Database:
         building_id, building_name, org_id = record
         return Building(building_id, building_name, org_id)
 
-
     @classmethod
     def getFloorByID(cls, floor_id):
         query = 'SELECT * FROM Floor WHERE id = ?;'
@@ -121,7 +105,6 @@ class Database:
             return None
         floor_id, story, building_id = record
         return Floor(floor_id, story, building_id)
-
 
     @classmethod
     def getFloor(cls, building_id, story):
@@ -134,7 +117,6 @@ class Database:
         floor_id, story, building_id = record
         return Floor(floor_id, story, building_id)
 
-
     @classmethod
     def getRoomByID(cls, room_id):
         query = 'SELECT * FROM Room WHERE id = ?;'
@@ -145,7 +127,6 @@ class Database:
             return None
         room_id, room_name, floor_id, x_loc, y_loc = record
         return Room(room_id, room_name, floor_id, (x_loc, y_loc))
-
 
     @classmethod
     def getAllRooms(cls):
@@ -161,7 +142,6 @@ class Database:
 
         return rooms
 
-
     @classmethod
     def getLocation(cls, room_id):
         if cls.cur is None:
@@ -175,4 +155,4 @@ class Database:
 
         organization = cls.getOrganizationByID(building.owner_id)
 
-        return f'Room {room.name} is located on floor {floor.name} of the {building.name} at {organization.name}'
+        return f'(location:"{room.location}") (room:"{room.name}") (floor:"{floor.name}") (building:"{building.name}")'

@@ -11,8 +11,6 @@ app = Flask(__name__)
 ip_address = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
 
 
-# Import XLSX data
-@app.route('/load_rooms')
 def load_rooms():
 
     with open('Room_data.csv', mode='r') as file:
@@ -36,7 +34,6 @@ def load_rooms():
     return 'Load successful...'
 
 
-@app.route('/make_qr_codes')
 def make_qr_codes():
     rooms = db.getAllRooms()
     for room_ in rooms:
@@ -45,7 +42,6 @@ def make_qr_codes():
     return 'QR codes created...'
 
 
-@app.route('/load_buildings')
 def load_buildings():
 
     with open('Building_data.csv', mode='r') as file:
@@ -101,10 +97,6 @@ def room_info():
     result = db.getLocation(room_id)
 
     return result
-
-@app.route('/floor')
-def floor():
-    return None
 
 
 db.connect('atlas','atlas')
