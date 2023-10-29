@@ -4,6 +4,7 @@ from db_model import *
 from qrCodeGenerator import QRCodeGenerator as qrcg
 import netifaces as ni
 import csv
+from flask import send_file
 
 app = Flask(__name__)
 
@@ -80,8 +81,14 @@ def room():
     # Get floor map
     # Get building
     # Get organization
-    return str(result)
+    if request.args.get('type') == '1':
+       filename = 'ok.gif'
+    else:
+       filename = 'error.gif'
 
+    room = db.getRoomByID(room_id)
+    filename = db.getFloorByID(room.owner_id)
+    return send_file(filename, mimetype='image/png')
 
 @app.route('/floor')
 def floor():
