@@ -30,7 +30,7 @@ def load():
 
         for record in csvFile:
             name, building_name, story, _, _, _, x_loc, y_loc = record
-            if name == 'Room':
+            if name == 'Room' or name == '':
                 continue
             building = db.getBuilding('name', building_name)
             floor = db.getFloor(building.uid, story)
