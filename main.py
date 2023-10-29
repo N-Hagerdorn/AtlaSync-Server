@@ -30,7 +30,7 @@ def load_rooms():
 
         for record in csvFile:
             name, building_name, story, _, _, _, x_loc, y_loc = record
-            if name == 'Room' or name == '':
+            if name == 'Room' or name == '' or building_name == 'Building':
                 continue
             print(f'Trying to find {building_name} in table Building...')
             building = db.getBuildingByName(building_name)
