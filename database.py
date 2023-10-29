@@ -26,9 +26,11 @@ class Database:
         cls.conn = conn
         cls.cur = conn.cursor()
 
+
     @classmethod
     def commit(cls):
         cls.conn.commit()
+
 
     @classmethod
     def addRoom(cls, room):
@@ -57,17 +59,21 @@ class Database:
 
         return True
 
+
     @classmethod
     def addFloor(cls):
         return None
+
 
     @classmethod
     def addBuilding(cls):
         return None
 
+
     @classmethod
     def addOrganization(cls):
         return None
+
 
     @classmethod
     def getOrganizationByID(cls, organization_id):
@@ -80,6 +86,7 @@ class Database:
         organization_id, organization_name = record
         return Organization(organization_id, organization_name)
 
+
     @classmethod
     def getBuildingByID(cls, building_id):
         query = 'SELECT * FROM Building WHERE id = ?;'
@@ -90,6 +97,7 @@ class Database:
             return None
         building_id, building_name, org_id = record
         return Building(building_id, building_name, org_id)
+
 
     @classmethod
     def getBuildingByName(cls, name):
@@ -102,6 +110,7 @@ class Database:
         building_id, building_name, org_id = record
         return Building(building_id, building_name, org_id)
 
+
     @classmethod
     def getFloorByID(cls, floor_id):
         query = 'SELECT * FROM Floor WHERE id = ?;'
@@ -112,6 +121,7 @@ class Database:
             return None
         floor_id, story, building_id = record
         return Floor(floor_id, story, building_id)
+
 
     @classmethod
     def getFloor(cls, building_id, story):
@@ -124,6 +134,7 @@ class Database:
         floor_id, story, building_id = record
         return Floor(floor_id, story, building_id)
 
+
     @classmethod
     def getRoomByID(cls, room_id):
         query = 'SELECT * FROM Room WHERE id = ?;'
@@ -134,6 +145,7 @@ class Database:
             return None
         room_id, room_name, floor_id, x_loc, y_loc = record
         return Room(room_id, room_name, floor_id, (x_loc, y_loc))
+
 
     @classmethod
     def getAllRooms(cls):
@@ -148,6 +160,7 @@ class Database:
             record = cls.cur.fetchone()
 
         return rooms
+
 
     @classmethod
     def getLocation(cls, room_id):
