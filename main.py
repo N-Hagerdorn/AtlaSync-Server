@@ -7,15 +7,6 @@ import csv
 
 app = Flask(__name__)
 
-with open('Room_data.csv', mode='r') as file:
-    # reading the CSV file
-    csvFile = csv.reader(file)
-
-    # displaying the contents of the CSV file
-
-    for line in csvFile:
-        print(line)
-
 ip_address = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
 
 # Import XLSX data
@@ -41,6 +32,12 @@ def load_rooms():
 
     db.commit()
     return 'Load successful...'
+
+@app.route('/make_qr_codes')
+def make_qr_codes():
+    rooms = db.getRooms('id', '*')
+    print(rooms)
+    return rooms
 
 @app.route('/load_buildings')
 def load_buildings():

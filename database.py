@@ -136,6 +136,21 @@ class Database:
         return Room(room_id, room_name, floor_id, (x_loc, y_loc))
 
     @classmethod
+    def getRooms(cls, column_name, value):
+        query = 'SELECT * FROM Room WHERE ? = ?'
+        data = (column_name, value)
+        cls.cur.execute(query, data)
+        record = cls.cur.fetchone()
+        rooms = []
+
+        while record is not None:
+            room_id, room_name, floor_id, x_loc, y_loc = record
+            rooms.append(Room(room_id, room_name, floor_id, (x_loc, y_loc)))
+            record = cls.cur.fetchone()
+
+        return rooms
+
+    @classmethod
     def getLocation(cls, room_id):
         if cls.cur is None:
             return None
