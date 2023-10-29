@@ -5,6 +5,7 @@ from qrCodeGenerator import QRCodeGenerator as qrcg
 import netifaces as ni
 import csv
 from flask import send_file
+import base64
 
 app = Flask(__name__)
 ip_address = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
@@ -73,22 +74,33 @@ def hello():
     return 'Hello, World!'
 
 
-@app.route('/room', methods=['GET'])
+@app.route('/room/img', methods=['GET'])
 def room():
     # Get room
     room_id = request.args.get('id')
     print(f'User {request.remote_addr} requests Room {room_id}')
-    result = db.getLocation(room_id)
-    # Get floor from room.floor_id
-    # Get floor map
-    # Get building
-    # Get organization
 
     room = db.getRoomByID(room_id)
     floor = db.getFloorByID(room.owner_id)
     building = db.getBuildingByID(floor.owner_id)
     filename = f'floormaps/{building.uid}-{floor.name}.png'
-    return send_file(filename, mimetype='image/png')
+
+    converted_string = 'Undefined'
+
+    with open(filename, 'rb') as image2string:
+        converted_string = base64.b64encode(image2string.read())
+
+    return converted_string
+
+
+@app.route('/room/info', methods=['GET'])
+def room():
+    # Get room
+    room_id = request.args.get('id')
+    print(f'User {request.remote_addr} requests Room {room_id}')
+    result = db.getLocation(room_id)
+
+    return result
 
 @app.route('/floor')
 def floor():
