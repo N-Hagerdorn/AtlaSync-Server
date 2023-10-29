@@ -81,10 +81,6 @@ def room():
     # Get floor map
     # Get building
     # Get organization
-    if request.args.get('type') == '1':
-       filename = 'ok.gif'
-    else:
-       filename = 'error.gif'
 
     room = db.getRoomByID(room_id)
     filename = db.getFloorByID(room.owner_id)
