@@ -79,7 +79,7 @@ def floor_map():
     room = db.getRoomByID(room_id)
     floor = db.getFloorByID(room.owner_id)
     building = db.getBuildingByID(floor.owner_id)
-    filename = f'floormaps/{building.uid}-{floor.name}.png'
+    filename = f'./AtlaSync-Server/floormaps/{building.uid}-{floor.name}.png'
 
     converted_string = 'Undefined'
 
