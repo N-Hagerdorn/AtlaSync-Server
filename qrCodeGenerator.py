@@ -1,5 +1,6 @@
 import segno, shutil
 
+
 class QRCodeGenerator:
 
     @classmethod

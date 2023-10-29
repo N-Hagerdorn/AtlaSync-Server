@@ -7,8 +7,8 @@ import csv
 from flask import send_file
 
 app = Flask(__name__)
-
 ip_address = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
+
 
 # Import XLSX data
 @app.route('/load_rooms')
@@ -34,6 +34,7 @@ def load_rooms():
     db.commit()
     return 'Load successful...'
 
+
 @app.route('/make_qr_codes')
 def make_qr_codes():
     rooms = db.getAllRooms()
@@ -41,6 +42,7 @@ def make_qr_codes():
         qrcg.makeRoomQRCode(room_.uid)
 
     return 'QR codes created...'
+
 
 @app.route('/load_buildings')
 def load_buildings():
