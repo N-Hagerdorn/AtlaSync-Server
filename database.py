@@ -6,7 +6,7 @@ from db_model import *
 class Database:
 
     cur = None
-
+    conn = None
 
     @classmethod
     def connect(cls, username, password):
@@ -23,7 +23,12 @@ class Database:
             print(f'Error connecting to MariaDB platform: {e}')
             sys.exit(1)
 
+        cls.conn = conn
         cls.cur = conn.cursor()
+
+    @classmethod
+    def commit(cls):
+        cls.conn.commit()
 
     @classmethod
     def addRoom(cls, room):

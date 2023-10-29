@@ -39,6 +39,9 @@ def load():
             room = Room(-1, name, floor.uid, (x_loc, y_loc))
             db.addRoom(room)
 
+    db.commit()
+    return 'Load successful...'
+
 
 @app.route('/')
 def hello():
